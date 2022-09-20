@@ -1,0 +1,10 @@
+::-webkit-scrollbar {
+    display: none; /* Chrome Safari */
+  }
+  .cursor {
+    cursor: pointer
+}
+
+.active {
+    color: #F87171;
+}
