@@ -9,14 +9,13 @@ export default class Result extends Component {
   };
   componentDidMount = () => this.init();
   init = () => {
-    let { oneName, twoName } = this.props.match.params;
-    let URLS = [
-      baseFetch(this.URL + oneName, {}),
-      baseFetch(this.URL + twoName, {}),
-    ];
-    Promise.all(URLS).then((res) => {
-      this.setState({ arrs: res });
-    });
+    let {search }=this.props.history.location
+    let data = search.slice(1).split('&').join(' ')
+    let [ onw, two ] = data.replace(/=/g, ':').split(' ')
+    let URLS = [baseFetch(this.URL + onw.match(/oneName:(\S*)/)[1], {}), baseFetch(this.URL + two.match(/twoName:(\S*)/)[1], {})]
+    Promise.all(URLS).then(res => {
+      this.setState({ arrs: res })
+    })
   };
   goBack = () => {
     let { history } = this.props;

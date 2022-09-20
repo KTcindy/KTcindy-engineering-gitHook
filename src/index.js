@@ -20,7 +20,7 @@ class App extends React.Component {
         <Switch>
           <Route path="/Popular" exact component={Popular}></Route>
           <Route path="/Battle" exact component={Battle}></Route>
-          <Route path="/Result/:oneName/:twoName" exact component={Result}></Route>
+          <Route path="/Result" exact component={Result}></Route>
           {/*默认重定向路由 */}
           <Redirect to="Popular"></Redirect>
         </Switch>

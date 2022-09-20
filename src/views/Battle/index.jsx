@@ -59,7 +59,7 @@ export default class Battle extends Component {
       history,
       battleObject: { oneName, twoName },
     } = this.props;
-    history.push({ pathname: `/Result/${oneName}/${twoName}` });
+    history.push({pathname:'/Result',search:`?oneName=${oneName}&twoName=${twoName}`})
   };
   // 对数据进行校验
   static propTypes = {
