@@ -1,11 +1,26 @@
 import React, { Component } from "react";
 import baseFetch from "../../../utils/require";
 import LazyLoad from "react-lazyload";
-
+import '../../../components/list/index.css';
+function LoadEffect() {
+  return (
+    <div className="loadEffect">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  );
+}
 export default class Result extends Component {
   URL = "/users/";
   state = {
     arrs: [],
+
   };
   componentDidMount = () => this.init();
   init = () => {
@@ -26,65 +41,70 @@ export default class Result extends Component {
     return (
       <div>
         <div className="flex justify-center mt-8">
-          {arrs.map((item, index) => {
-            return (
-              <div className="w-2/5 p-10" key={item.id}>
-                <div className="w-2/4 m-auto bg-gray-400 p-8 rounded-lg">
-                  <h4 className="text-center text-3xl p-2">
-                    {index % 2 ? "Loser" : "Winner"}
-                  </h4>
-                  <div>
-                    <LazyLoad
-                      height={100}
-                      offset={100}
-                      placeholder={
-                        <img
-                          width="120px"
-                          className="m-auto"
-                          height="100%"
-                          src="https://img.zcool.cn/community/01415f5996acdaa8012156038f6b78.gif"
-                          alt="加载失败"
-                        />
-                      }
-                    >
-                      <img src={item.avatar_url} alt="加载失败" />
-                    </LazyLoad>
-                  </div>
-                  <h4 className="text-center text-xl p-2">
-                    Scores: {item.public_repos}
-                  </h4>
-                  <h4 className="text-center text-xl p-2 text-blue-500">
-                    {item.name}
-                  </h4>
-                  <div>
-                    <p>
-                      <i className="fa fa-location-arrow"></i>
-                      <span className="pl-2">{item.name}</span>
-                    </p>
-                    <p>
-                      <i className="fa fa-american-sign-language-interpreting"></i>
-                      <span className="pl-2">{item.public_gists}</span>
-                    </p>
-                    <p>
-                      <i className="fa fa-user-plus"></i>
-                      <span className="pl-2">{item.following}</span>
-                    </p>
-                    <p>
-                      <i className="fa fa-code"></i>
-                      <span className="pl-2">{item.public_repos}</span>
-                    </p>
+          {(
+            arrs.length ? arrs.map((item, index) => {
+              return (
+                <div className="xl:w-2/5 w-full m-2 xl:p-10" key={item.id}>
+                  <div className="xl:w-2/4 m-auto bg-gray-400 p-8 rounded-lg">
+                    <h4 className="text-center text-3xl p-2">
+                      {index % 2 ? "Loser" : "Winner"}
+                    </h4>
+                    <div>
+                      <LazyLoad
+                        height={100}
+                        offset={100}
+                        placeholder={
+                          <img
+                            width="120px"
+                            className="m-auto"
+                            height="100%"
+                            src="https://img.zcool.cn/community/01415f5996acdaa8012156038f6b78.gif"
+                            alt="加载失败"
+                          />
+                        }
+                      >
+                        <img src={item.avatar_url} alt="加载失败" />
+                      </LazyLoad>
+                    </div>
+                    <h4 className="text-center text-xl p-2">
+                      Scores: {item.public_repos}
+                    </h4>
+                    <h4 className="text-center text-xl p-2 text-blue-500">
+                      {item.name}
+                    </h4>
+                    <div>
+                      <p>
+                        <i className="fa fa-location-arrow"></i>
+                        <span className="pl-2">{item.name}</span>
+                      </p>
+                      <p>
+                        <i className="fa fa-american-sign-language-interpreting"></i>
+                        <span className="pl-2">{item.public_gists}</span>
+                      </p>
+                      <p>
+                        <i className="fa fa-user-plus"></i>
+                        <span className="pl-2">{item.following}</span>
+                      </p>
+                      <p>
+                        <i className="fa fa-code"></i>
+                        <span className="pl-2">{item.public_repos}</span>
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            }) : <LoadEffect/>
+          )}
         </div>
-        <button
+        {
+        arrs.length?<button
           onClick={this.goBack}
           className="rounded bg-gray-300 px-8 pt-4 py-4 m-auto flex mt-4"
         >
           RESET
-        </button>
+        </button>:null
+        }
+        
       </div>
     );
   }

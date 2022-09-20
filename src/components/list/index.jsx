@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import LazyLoad from "react-lazyload";
-
 import "./index.css";
 // loading 组件
 function LoadEffect() {

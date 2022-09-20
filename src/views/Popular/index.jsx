@@ -61,7 +61,6 @@ export default class AppDemo extends Component {
   // 点击tab切换类型
   clickActive = (item) => {
     this.setState({ list: [], flag: false, active: item });
-    // let { q } = this.state.ajaxData
     let _q = `stars:>1 language:${item}`;
     let _ajaxData = { ...this.state.ajaxData, q: _q };
     this.setState({ ajaxData: _ajaxData }, () => {
